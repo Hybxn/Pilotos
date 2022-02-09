@@ -40,6 +40,6 @@ public class MonoplazaService {
 	}
 	
 	public List<Monoplaza> findByPiloto(Piloto p){
-		return r.findByPilto(p);
+		return r.findByPiloto(p);
 	}
 }

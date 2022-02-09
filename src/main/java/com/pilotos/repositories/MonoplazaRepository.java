@@ -9,6 +9,6 @@ import com.pilotos.models.Piloto;
 
 public interface MonoplazaRepository extends JpaRepository<Monoplaza, Long>{
 	
-	List<Monoplaza> findByPilto(Piloto piloto);
+	List<Monoplaza> findByPiloto(Piloto piloto);
 
 }
