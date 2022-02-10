@@ -14,13 +14,13 @@ public class Monoplaza {
 	private long id;
 	private String fabricante;
 	private String modelo;
-	private short potencia;
+	private int potencia;
 	@ManyToOne
 	private Piloto piloto;
 	
 	public Monoplaza() {}
 
-	public Monoplaza(String fabricante, String modelo, short potencia, Piloto piloto) {
+	public Monoplaza(String fabricante, String modelo, int potencia, Piloto piloto) {
 		this.fabricante = fabricante;
 		this.modelo = modelo;
 		this.potencia = potencia;
@@ -51,7 +51,7 @@ public class Monoplaza {
 		this.modelo = modelo;
 	}
 
-	public short getPotencia() {
+	public int getPotencia() {
 		return potencia;
 	}
 
