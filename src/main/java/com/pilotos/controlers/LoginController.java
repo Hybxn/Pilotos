@@ -15,12 +15,12 @@ public class LoginController {
 
 	@Autowired
 	PilotoService ps;
-	
+
 	@GetMapping("/")
 	public String landingPage() {
 		return "redirect:/auth/login";
 	}
-
+	
 	@GetMapping("/auth/login")
 	public String login(Model model) {
 		return "login";

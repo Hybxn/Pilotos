@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.pilotos.models.Monoplaza;
 import com.pilotos.models.Piloto;
-import com.pilotos.repositories.MonoplazaRepository;
-import com.pilotos.repositories.PilotoRepository;
+import com.pilotos.services.MonoplazaService;
+import com.pilotos.services.PilotoService;
 
 @SpringBootApplication
 public class PilotosApplication {
@@ -18,12 +18,12 @@ public class PilotosApplication {
 	}
 	
 	@Bean
-	CommandLineRunner initData(PilotoRepository pr, MonoplazaRepository mr) {
+	CommandLineRunner initData(PilotoService ps, MonoplazaService ms) {
 		return (args) ->{
-			pr.save(new Piloto("ivan@prueba.com", "ivan", "Ivan", "Macia"));
-			pr.save(new Piloto("Fernando@prueba.com", "fer", "Fernando", "Alonso"));
-			mr.save(new Monoplaza("Red Bull PowerTrains", "RB18", 1150, pr.findById((long) 1).orElse(null)));
-			mr.save(new Monoplaza("Alpine", "A521", 1250, pr.findById((long) 2).orElse(null)));
+			ps.insert(new Piloto("ivan@prueba.com", "ivan", "Ivan", "Macia"));
+			ps.insert(new Piloto("Fernando@prueba.com", "fer", "Fernando", "Alonso"));
+			ms.insert(new Monoplaza("Red Bull PowerTrains", "RB18", 1150, ps.findById(1)));
+			ms.insert(new Monoplaza("Alpine", "A521", 1250, ps.findById(2)));
 		};
 	}
 

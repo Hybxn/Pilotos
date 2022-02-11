@@ -7,14 +7,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration @EnableWebSecurity
 public class SeguridadConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
-	UserDetailsService uds;
+	UserDetailsServiceImpl udsi;
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -23,25 +22,29 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(uds).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(udsi).passwordEncoder(passwordEncoder());
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/", "/webjars/**", "/css/**", "/h2-console/**", "/public/**", "/auth/**", "/files/**").permitAll()
+				.antMatchers("/", "/webjars/**", "/css/**", "/h2-console/**", "/public/**", "/auth/**", "/files/**",
+						"/monoplazas").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
-				.loginPage("/auth/login")
-				.defaultSuccessUrl("/public/index", true)
+				.loginPage("/auth/login").permitAll()
+				.defaultSuccessUrl("/monoplazas", true)
 				.loginProcessingUrl("/auth/login-post")
+				.failureUrl("/login?error=true")
+				.usernameParameter("username")
+				.passwordParameter("password")
 				.permitAll()
 				.and()
 			.logout()
 				.logoutUrl("/auth/logout") 
-				.logoutSuccessUrl("/public/index");
+				.logoutSuccessUrl("/");
 		
 		http.csrf().disable();
 	    http.headers().frameOptions().disable();

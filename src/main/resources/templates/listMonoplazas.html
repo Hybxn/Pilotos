@@ -35,7 +35,7 @@
 				<tr th:each="monoplaza : ${monoplazas}">
 					<td th:text="${monoplaza.getFabricante()}"></td>
 					<td th:text="${monoplaza.getModelo()}"></td>
-					<td th:text="${monoplaza.getPotencia()}"></td>
+					<td th:text="${monoplaza.getPotencia()}+'cv'"></td>
 					<td>
 						<div class="btn-group">
 							<a href="#" th:href="@{/monoplaza/edit/{id}(id=${monoplaza.getId()})}">
@@ -48,13 +48,22 @@
 					</td>
 				</tr>
 			</tbody>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<div class="btn-group text-center my-3">
+							<a href="monoplazas/new">
+								<button type="button" class="btn btn-outline-success">Nuevo
+									monoplaza</button>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</tfoot>
 		</table>
-	</div>
-	<div class="btn-group text-center my-3">
-		<a href="monoplazas/new">
-			<button type="button" class="btn btn-outline-success">Nuevo
-				monoplaza</button>
-		</a>
 	</div>
 	<!-- Scripts JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

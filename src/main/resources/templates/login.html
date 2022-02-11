@@ -14,7 +14,7 @@
 	<div class="container text-center align-self-center fondo5 w-75 rounded-lg shadow bg-light border border-dark">
 		<div th:if="${param.error}" class="alert alert-danger my-3" role="alert">Email y/o contraseña no válidos.</div>
 		<div th:if="${param.logout}" class="alert alert-success my-3" role="alert">Sesión cerrada con éxito.</div>
-		<form class="justify-content-center" th:action="@{/login}" method="post">
+		<form class="justify-content-center" th:action="@{/auth/login-post}" method="POST">
 			<div class="form-group my-3">
 				<label for="username" class="col-4 col-form-label d-none d-md-inline-flex">
 					Email: </label> <input class="col-7 form-control d-inline-block" type="text" name="username"
