@@ -9,17 +9,18 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration @EnableWebSecurity
-public class SeguridadConfig extends WebSecurityConfigurerAdapter{
+@Configuration
+@EnableWebSecurity
+public class SeguridadConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	UserDetailsServiceImpl udsi;
-	
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(udsi).passwordEncoder(passwordEncoder());
@@ -27,28 +28,15 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-				.antMatchers("/", "/webjars/**", "/css/**", "/h2-console/**", "/public/**", "/auth/**", "/files/**",
-						"/monoplazas").permitAll()
-				.anyRequest().authenticated()
-				.and()
-			.formLogin()
-				.loginPage("/auth/login").permitAll()
-				.defaultSuccessUrl("/monoplazas", true)
-				.loginProcessingUrl("/auth/login-post")
-				.failureUrl("/login?error=true")
-				.usernameParameter("username")
-				.passwordParameter("password")
-				.permitAll()
-				.and()
-			.logout()
-				.logoutUrl("/auth/logout") 
-				.logoutSuccessUrl("/");
-		
+		http.authorizeRequests()
+				.antMatchers("/", "/webjars/**", "/css/**", "/h2-console/**", "/public/**", "/auth/**", "/files/**")
+				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/auth/login").permitAll()
+				.defaultSuccessUrl("/monoplazas", true).loginProcessingUrl("/auth/login-post")
+				.failureUrl("/auth/login?error=true").usernameParameter("username").passwordParameter("password").permitAll()
+				.and().logout().logoutUrl("/auth/logout").logoutSuccessUrl("/");
+
 		http.csrf().disable();
-	    http.headers().frameOptions().disable();
+		http.headers().frameOptions().disable();
 	}
 
-	
 }

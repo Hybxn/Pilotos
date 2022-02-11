@@ -55,7 +55,7 @@ public class Monoplaza {
 		return potencia;
 	}
 
-	public void setPotencia(short potencia) {
+	public void setPotencia(int potencia) {
 		this.potencia = potencia;
 	}
 
