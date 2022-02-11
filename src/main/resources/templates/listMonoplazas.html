@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Lista Monoplazas - Pilotos</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+
+<body>
+	<h3 class="display-4 my-4 text-center"> Tus monoplazas</h3>
+	<div th:if="${#lists.isEmpty(monoplazas)}">
+		<span class="alert alert-danger" role="alert">
+			Ups. Parece que no tienes ningun monoplaza,
+			<a href="/monoplazas/new">
+				<button type="button" class="btn btn-outline-info">Añadir
+					monoplaza</button>
+			</a>
+		</span>
+	</div>
+	<div
+		class="container text-center align-self-center w-75 rounded-lg shadow bg-light border border-dark p-3 table-responsive">
+
+		<table class="table table-hover container-fluid" th:if="${not #lists.isEmpty(monoplazas)}">
+			<thead class="thead-light">
+				<tr>
+					<th>Fabricante</th>
+					<th>Modelo</th>
+					<th>Potencia</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody class="bg-light">
+				<tr th:each="monoplaza : ${monoplazas}">
+					<td th:text="${monoplaza.getFabricante()}"></td>
+					<td th:text="${monoplaza.getModelo()}"></td>
+					<td th:text="${monoplaza.getPotencia()}"></td>
+					<td>
+						<div class="btn-group">
+							<a href="#" th:href="@{/monoplaza/edit/{id}(id=${monoplaza.getId()})}">
+								<button type="button" class="btn btn-outline-info">
+									Editar</button>
+							</a> <a href="#" th:href="@{/monoplaza/delete/{id}(id=${monoplaza.getId()})}">
+								<button type="button" class="btn btn-outline-danger">Eliminar</button>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="btn-group text-center my-3">
+		<a href="monoplazas/new">
+			<button type="button" class="btn btn-outline-success">Nuevo
+				monoplaza</button>
+		</a>
+	</div>
+	<!-- Scripts JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
