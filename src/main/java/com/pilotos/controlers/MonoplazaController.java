@@ -51,4 +51,11 @@ public class MonoplazaController {
 		
 		return "redirect:/monoplazas";
 	}
+	
+	@GetMapping("/monoplaza/delete/{id}")
+	public String deleteMonoplaza(Model model, @PathVariable("id") int id) {
+		ms.delete(id);
+		
+		return "redirect:/monoplazas";
+	}
 }

@@ -10,19 +10,17 @@
 
 <body>
 	<h3 class="display-4 my-4 text-center"> Tus monoplazas</h3>
-	<div th:if="${#lists.isEmpty(monoplazas)}">
-		<span class="alert alert-danger" role="alert">
+	<div th:if="${#lists.isEmpty(monoplazas)}" class="text-center align-self-center">
+		<span class="alert alert-danger " role="alert">
 			Ups. Parece que no tienes ningun monoplaza,
-			<a href="/monoplazas/new">
-				<button type="button" class="btn btn-outline-info">Añadir
-					monoplaza</button>
+			<a href="/monoplazas/new"> Añadir monoplaza
 			</a>
 		</span>
 	</div>
-	<div
-		class="container text-center align-self-center w-75 rounded-lg shadow bg-light border border-dark p-3 table-responsive">
+	<div class="container text-center align-self-center w-75 rounded-lg shadow bg-light border border-dark p-3 table-responsive"
+		th:if="${not #lists.isEmpty(monoplazas)}">
 
-		<table class="table table-hover container-fluid" th:if="${not #lists.isEmpty(monoplazas)}">
+		<table class="table table-hover container-fluid">
 			<thead class="thead-light">
 				<tr>
 					<th>Fabricante</th>
