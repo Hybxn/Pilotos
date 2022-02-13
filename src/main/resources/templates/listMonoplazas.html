@@ -9,6 +9,7 @@
 </head>
 
 <body>
+	<a th:replace="/navbar.html :: navbar" href="/"></a>
 	<h3 class="display-4 my-4 text-center"> Tus monoplazas</h3>
 	<div th:if="${#lists.isEmpty(monoplazas)}" class="text-center align-self-center">
 		<span class="alert alert-danger " role="alert">

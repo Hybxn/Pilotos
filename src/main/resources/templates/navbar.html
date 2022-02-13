@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+
+<body>
+	<nav th:fragment="navbar" class="navbar navbar-expand-md sticky-top navbar-dark shadow">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#contenidoNav"
+			aria-controls="contenidoNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse text-right" id="contenidoNav">
+
+			<div class="btn-group" th:if="${#authentication.name != 'anonymousUser'}">
+				<button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false" th:text="${#authentication.name}"></button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a href="/monoplazas" class="dropdown-item" type="button">Listar Monoplazas</a> <a
+						href="/monoplazas/new" class="dropdown-item" type="button">Nuevo Monoplaza</a>
+					<div class="dropdown-divider"></div>
+					<a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"
+						type="button">Logout</a>
+				</div>
+			</div>
+		</div>
+		<form th:action="@{/logout}" method="post" id="logoutForm"></form>
+	</nav>
+	<!-- Scripts JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>

@@ -10,6 +10,7 @@
 </head>
 
 <body>
+	<a th:replace="/navbar.html :: navbar" href="/"></a>
 	<h3 class="display-4 my-4 text-center">Iniciar Sesion</h3>
 	<div class="container text-center align-self-center w-75 rounded-lg shadow bg-light border border-dark">
 		<div th:if="${param.error}" class="alert alert-danger my-3" role="alert">Email y/o contraseña no válidos.</div>
