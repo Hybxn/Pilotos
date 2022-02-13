@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<nav th:fragment="navbar" class="navbar navbar-expand-md sticky-top navbar-dark shadow">
+	<nav th:fragment="navbar" class="navbar navbar-expand-md sticky-top navbar-dark shadow" th:if="${#authentication.name != 'anonymousUser'}">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#contenidoNav"
 			aria-controls="contenidoNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
 
 		<div class="collapse navbar-collapse text-right" id="contenidoNav">
 
-			<div class="btn-group" th:if="${#authentication.name != 'anonymousUser'}">
+			<div class="btn-group" >
 				<button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false" th:text="${#authentication.name}"></button>
 				<div class="dropdown-menu dropdown-menu-right">
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		<form th:action="@{/logout}" method="post" id="logoutForm"></form>
+		<form th:action="@{/auth/logout}" method="post" id="logoutForm"></form>
 	</nav>
 	<!-- Scripts JavaScript -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

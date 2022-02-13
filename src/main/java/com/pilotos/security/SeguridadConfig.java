@@ -33,7 +33,7 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
 				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/auth/login").permitAll()
 				.defaultSuccessUrl("/monoplazas", true).loginProcessingUrl("/auth/login-post")
 				.failureUrl("/auth/login?error=true").usernameParameter("username").passwordParameter("password").permitAll()
-				.and().logout().logoutUrl("/auth/logout").logoutSuccessUrl("/");
+				.and().logout().logoutUrl("/auth/logout").logoutSuccessUrl("/auth/login?logout");
 
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
